@@ -1,0 +1,42 @@
+<canvas id="canvas" width="512" height="512"></canvas>
+<div id="uiContainer">
+  <div id="ui">
+    <div id="fRotation"></div>
+  </div>
+</div>
+<script  id="vertex-shader-3d" type="x-shader/x-vertex">
+  attribute vec4 a_position;
+  attribute vec3 a_normal;
+  
+  uniform mat4 u_worldViewProjection;
+  uniform mat4 u_worldInverseTranspose;
+  
+  varying vec3 v_normal;
+  
+  void main() {
+    gl_Position = u_worldViewProjection * a_position;
+  
+    v_normal = mat3(u_worldInverseTranspose) * a_normal;
+  }
+</script>
+<script  id="fragment-shader-3d" type="x-shader/x-fragment">
+  precision mediump float;
+
+  varying vec3 v_normal;
+  
+  uniform vec3 u_reverseLightDirection;
+  uniform vec4 u_color;
+  
+  void main() {
+    vec3 normal = normalize(v_normal);
+  
+    float light = dot(normal, u_reverseLightDirection);
+  
+    gl_FragColor = u_color;
+    gl_FragColor.rgb *= light;
+  }
+</script>
+<script src="https://webglfundamentals.org/webgl/resources/webgl-utils.js"></script>
+<script src="https://webglfundamentals.org/webgl/resources/webgl-lessons-ui.js"></script>
+<script src="https://webglfundamentals.org/webgl/resources/m4.js"></script>
+<script type="text/javascript" src="assign3.js"></script>
