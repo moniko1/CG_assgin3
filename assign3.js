@@ -85,7 +85,7 @@ function main() {
     var projectionMatrix = m4.perspective(fieldOfViewRadians, aspect, zNear, zFar);
 
     var camera = [200, 250, 300];
-    var target = [0, 50, 0];
+    var target = [50, 50, 50];
     var up = [0, 1, 0];
     var cameraMatrix = m4.lookAt(camera, target, up);
 
@@ -560,12 +560,12 @@ function setNormals(gl) {
             0, 0, 1,
   
             // middle_top rung 앞
-            1, 0, 0,
-            1, 0, 0,
-            1, 0, 0,
-            1, 0, 0,
-            1, 0, 0,
-            1, 0, 0,
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, 1,
   
             // middle_bottom rung 앞
             0, 0, 1,
